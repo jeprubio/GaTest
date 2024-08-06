@@ -5,7 +5,7 @@ on:
 jobs:
   reintegrate_branch:
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.merged == true }}
+    if: ${{ github.event.pull_request.merged == true && !contains(github.event.pull_request.labels.*.name, 'skip-reintegration') }}
     steps:
       - name: Set up JDK 17
         uses: actions/setup-java@v2
